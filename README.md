@@ -1,2 +1,2 @@
 # CodeVault
-This repository contains the automation code for cypress tests
+Run test using 'npx playwright test' command
