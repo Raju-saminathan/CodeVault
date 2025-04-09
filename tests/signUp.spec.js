@@ -3,12 +3,12 @@ import * as functions from '../steps/signUpSteps'
 
 test.describe('signUp Tests', () => {
     test('Create an account with valid details', async ({ page }) => {
-        await functions.fillAllDetails(page, 'ram', 'kumar', 'ramk@gmail.com', 'Ramkumar@23!123.');
+        await functions.fillAllDetails(page, 'rams', 'kumars', 'ramks@gmail.com', 'Ramkumar@23!123.');
         const passStrength = await functions.passStrength(page)
         const userValidation = await functions.validateUser(page)
         await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/create/');
         expect(passStrength.strength).toBe('Very Strong')
-        expect (userValidation.successMessageText).toBe('Thank you for registering with Main Website Store.')
+        expect(userValidation.successMessageText).toBe('Thank you for registering with Main Website Store.')
         expect(userValidation.userNameText).toBe('Welcome, ram kumar!')
     });
 
@@ -64,12 +64,14 @@ test.describe('signUp Tests', () => {
         await functions.fillAllDetails(page, 'sami', 'nathan', 'gonathsss@gmail.com', 'sami@2000!');
         const passStrength = await functions.passStrength(page)
         expect(passStrength.strength).toBe('Strong')
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/create/');
     });
 
     test('Create an account with Very Storng password', async ({ page }) => {
         await functions.fillAllDetails(page, 'sami', 'nathan', 'gonathssees@gmail.com', 'sami@2000nath!');
         const passStrength = await functions.passStrength(page)
         expect(passStrength.strength).toBe('Very Strong')
+        await expect(page).toHaveURL('https://magento.softwaretestingboard.com/customer/account/create/');
     });
 
     test('Create an account with same mail ID', async ({ page }) => {
